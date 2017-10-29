@@ -1,4 +1,4 @@
-package main
+package queries
 
 import (
 	"database/sql"
@@ -10,7 +10,7 @@ type Team struct {
 	ImageURL string `json:"image_url"`
 }
 
-func getAll(db *sql.DB) ([]Team, error) {
+func GetTeams(db *sql.DB) ([]Team, error) {
 	rows, err := db.Query(`SELECT * FROM team;`)
 	if err != nil {
 		return nil, err

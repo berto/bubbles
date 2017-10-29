@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/berto/bubbles/routes"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -20,9 +21,9 @@ func main() {
 	r := mux.NewRouter()
 
 	fileServer := generateFileServer()
-	r.HandleFunc("/api/teams", teamHandler)
+	r.HandleFunc("/api/teams", routes.TeamHandler)
 
-	r.PathPrefix("/").Handler(http.StripPrefix("/", fileServer))
+	r.PathPrefix("/").Handler(routes.NotFoundHook{http.StripPrefix("/", fileServer)})
 
 	server := generateHTTPServer(r, port)
 
