@@ -9,4 +9,4 @@ restart:
 	@make kill
 	@go run $(GO_FILES) & echo $$! > $(PID)
 
-.PHONY: serve dev restart kill
+.PHONY: dev restart kill

@@ -8,14 +8,20 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
 	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
 
 	r := mux.NewRouter()
 
 	fileServer := generateFileServer()
+	r.HandleFunc("/api/teams", teamHandler)
+
 	r.PathPrefix("/").Handler(http.StripPrefix("/", fileServer))
 
 	server := generateHTTPServer(r, port)
