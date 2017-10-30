@@ -1,11 +1,11 @@
-package routes
+package queries
 
 import (
 	"database/sql"
 	"os"
 )
 
-func connectDB() (*sql.DB, error) {
+func ConnectDB() (*sql.DB, error) {
 	connStr := os.Getenv("DATABASE_URL")
 	if connStr == "" {
 		connStr = "postgres://localhost/bubbles?sslmode=disable"
