@@ -10,6 +10,7 @@ import (
 	"github.com/berto/bubbles/server/routes"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -33,7 +34,7 @@ func main() {
 
 func generateHTTPServer(r *mux.Router, port string) *http.Server {
 	return &http.Server{
-		Handler:      r,
+		Handler:      cors.Default().Handler(r),
 		Addr:         ":" + port,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
