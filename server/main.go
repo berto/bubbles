@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/berto/bubbles/routes"
+	"github.com/berto/bubbles/server/routes"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -41,8 +41,8 @@ func generateHTTPServer(r *mux.Router, port string) *http.Server {
 }
 
 func generateFileServer() http.Handler {
-	var dist string
-	flag.StringVar(&dist, "dist", "./public/dist", "the directory to serve files from. Defaults to the current dist")
+	var public string
+	flag.StringVar(&public, "public", "./public", "the directory to serve files from. Defaults to public")
 	flag.Parse()
-	return http.FileServer(http.Dir(dist))
+	return http.FileServer(http.Dir(public))
 }

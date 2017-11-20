@@ -14,7 +14,7 @@ type hookedResponseWriter struct {
 func (hrw *hookedResponseWriter) WriteHeader(status int) {
 	if status == 404 {
 		hrw.ResponseWriter.Header().Set("Content-Type", "text/html")
-		index, err := ioutil.ReadFile("./public/dist/index.html")
+		index, err := ioutil.ReadFile("./public/index.html")
 		hrw.ignore = true
 		if err != nil {
 			log.Fatal(err)

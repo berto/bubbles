@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/berto/bubbles/db/queries"
+	"github.com/berto/bubbles/server/db/queries"
 	_ "github.com/lib/pq"
 )
 
